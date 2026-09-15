@@ -4,6 +4,8 @@ const operators = document.querySelectorAll(".operator")
 const clear = document.querySelector("#clear")
 const equals = document.querySelector("#equals")
 
+let firstNumber = null;
+let selectedOperator = null;
 
 numbers.forEach((number)=>{
     number.addEventListener('click',(event)=>{
@@ -14,3 +16,12 @@ numbers.forEach((number)=>{
         }
     })
 })
+
+
+operators.forEach((operator) => {
+    operator.addEventListener("click", () => {
+
+        firstNumber = Number(display.value);
+
+    });
+});

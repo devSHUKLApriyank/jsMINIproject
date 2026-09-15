@@ -50,6 +50,10 @@ function renderTask(task) {
         localStorage.setItem("tasks", JSON.stringify(tasks));
     });
 
+    if (task.completed) {
+    li.classList.add("completed");
+}
+
 
     // Delete Button
     const deleteBtn = document.createElement("button");

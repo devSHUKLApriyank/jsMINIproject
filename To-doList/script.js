@@ -52,8 +52,7 @@ function renderTask(task) {
 
     if (task.completed) {
     li.classList.add("completed");
-}
-
+    }
 
     // Delete Button
     const deleteBtn = document.createElement("button");

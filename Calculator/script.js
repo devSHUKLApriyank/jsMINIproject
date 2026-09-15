@@ -22,6 +22,6 @@ operators.forEach((operator) => {
     operator.addEventListener("click", () => {
 
         firstNumber = Number(display.value);
-
+        selectedOperator = operator.textContent;
     });
 });

@@ -25,3 +25,10 @@ operators.forEach((operator) => {
         selectedOperator = operator.textContent;
     });
 });
+
+
+equals.addEventListener("click", () => {
+
+    const secondNumber = Number(display.value);
+
+});

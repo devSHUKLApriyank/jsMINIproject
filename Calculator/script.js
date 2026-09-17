@@ -6,12 +6,20 @@ const equals = document.querySelector("#equals")
 
 let firstNumber = null;
 let selectedOperator = null;
+let secondNumber = null;
+let justCalculated = false;
 
-numbers.forEach((number)=>{
-    number.addEventListener('click',(event)=>{
-        if(display.value === "0"){
+numbers.forEach((number) => {
+    number.addEventListener('click', (event) => {
+
+        if (justCalculated) {
             display.value = number.textContent;
-        }else{
+            justCalculated = false;
+        }
+        else if (display.value === "0") {
+            display.value = number.textContent;
+        }
+        else {
             display.value = display.value + number.textContent;
         }
     })
@@ -23,12 +31,49 @@ operators.forEach((operator) => {
 
         firstNumber = Number(display.value);
         selectedOperator = operator.textContent;
+
+        display.value = "0";
+        justCalculated = false;
     });
 });
 
 
 equals.addEventListener("click", () => {
 
-    const secondNumber = Number(display.value);
+    if(justCalculated){
+        return;
+    }
 
+    secondNumber = Number(display.value);
+
+    if (selectedOperator === "+") {
+        display.value = firstNumber + secondNumber;
+    }
+
+    else if (selectedOperator === "-") {
+        display.value = firstNumber - secondNumber;
+    }
+
+    else if (selectedOperator === "*") {
+        display.value = firstNumber * secondNumber;
+    }
+
+    else if (selectedOperator === "/") {
+
+        if (secondNumber === 0) {
+            display.value = "Error"
+        } else {
+            display.value = firstNumber / secondNumber;
+        }
+    }
+    justCalculated = true;
+});
+
+
+
+clear.addEventListener("click", () => {
+    display.value = "0";
+    firstNumber = null;
+    selectedOperator = null;
+    secondNumber = null;
 });

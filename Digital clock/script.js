@@ -1,5 +1,9 @@
 const clock = document.querySelector("#clock")
 const date = document.querySelector("#date")
+const timer = document.querySelector("#timer")
+const start = document.querySelector("#start")
+const pause = document.querySelector("#pause")
+const reset = document.querySelector("#reset")
 
 function currentHour() {
     const now = new Date()
@@ -51,3 +55,32 @@ function currentDate() {
 }
 
 currentDate()
+
+let seconds = 0;
+let intervalId;
+
+start.addEventListener("click",()=>{
+    intervalId = setInterval(()=>{
+        seconds++
+        timer.textContent = seconds;
+    },1000)
+
+})
+
+
+
+pause.addEventListener("click", () => {
+    clearInterval(intervalId);
+});
+
+
+
+reset.addEventListener("click", () => {
+    clearInterval(intervalId);
+    seconds = 0;
+    timer.textContent = seconds;
+});
+
+
+
+

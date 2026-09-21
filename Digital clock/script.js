@@ -58,27 +58,37 @@ currentDate()
 
 let seconds = 0;
 let intervalId;
+let isRunning = false;
 
-start.addEventListener("click",()=>{
-    intervalId = setInterval(()=>{
-        seconds++
-        timer.textContent = seconds;
-    },1000)
+start.addEventListener("click", () => {
+    if (isRunning) {
+        return;
+    }
 
-})
+    intervalId = setInterval(() => {
+        seconds++;
 
+        const minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
+        const remainingSeconds = String(seconds % 60).padStart(2, "0");
+
+        timer.textContent = `${minutes}:${remainingSeconds}`;
+    }, 1000);
+
+    isRunning = true;
+});
 
 
 pause.addEventListener("click", () => {
     clearInterval(intervalId);
+    isRunning = false;
 });
-
 
 
 reset.addEventListener("click", () => {
     clearInterval(intervalId);
     seconds = 0;
-    timer.textContent = seconds;
+    isRunning = false;
+    timer.textContent = "00:00";
 });
 
 

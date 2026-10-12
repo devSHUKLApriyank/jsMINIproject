@@ -60,13 +60,46 @@ let currentQues = 0;
 let currentScore = 0;
 
 
+
 function showQues() {
     const current = quizData[currentQues];
+
     questions.textContent = current.question;
+    options.innerHTML ="";
 
     current.options.forEach(function (option) {
         const button = document.createElement('button');
+
         button.textContent = option;
         options.appendChild(button);
+
+        button.addEventListener("click",function(){
+            if(option === current.answer){
+                currentScore ++;
+                score.textContent = `Score: ${currentScore}`;
+            }
+
+            const allButtons = options.querySelectorAll("button")
+
+            allButtons.forEach(function(btn){
+                btn.disabled = true;
+            })
+
+          
+        });
     })
 }
+
+showQues();
+
+nextBtn.addEventListener("click",function(){
+    if(currentQues < quizData.length - 1){
+        currentQues ++;
+        showQues()
+    }else{
+        questions.textContent = "Quiz Completed";
+        options.innerHtml = "";
+        nextBtn.disable = true;
+        score.textContent = `Final Score: ${currentScore}/${quizData.length}`;
+    }  
+   })
